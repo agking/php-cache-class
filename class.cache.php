@@ -1,4 +1,10 @@
 <?php
+/**
+ * Based on and adapted from original work by Iain Cambridge:
+ * @author Iain Cambridge
+ * @copyright All rights reserved 2009-2010 (c)
+ * @license http://backie.org/copyright/bsd-license BSD License
+ */
 
 interface CacheBase
 {
@@ -9,18 +15,14 @@ interface CacheBase
 }
 
 /**
- * Simple class to deal with APC.
- * @author Iain Cambridge
- * @copyright All rights reserved 2009-2010 (c)
- * @license http://backie.org/copyright/bsd-license BSD License
+ * No_Cache: Implements a dummy class to handle when no cache is configured, or the cache type is set to 'none'
  */
 class No_Cache implements CacheBase {
 
 	/**
-	 * Returns the cached variable or
-	 * false if it doesn't exist.
+	 * Dummy method: Returns false for all requests.
 	 * @param $VarName string
-	 * @return mixed
+	 * @return false
 	 */
 	public function getVar($VarName)
 	{
@@ -28,25 +30,21 @@ class No_Cache implements CacheBase {
 	}
 	
 	/**
-	 * Sets a variable to the cache.
-	 * Returns true if successful and
-	 * false if fails.
+	 * Dummy method: Returns false for all requests.
 	 * @param $VarName string
 	 * @param $VarValue mixed
-	 * @param $TimeLimit int the amount of time before it expires
-	 * @return bool
+	 * @param $TimeLimit int the amount of time before it expires (defaults to Cache::CACHE_FIVE_MINUTES)
+	 * @return false
 	 */
-	public function setVar($VarName,$VarValue,$TimeLimit = Cache::CACHE_FIVE_MINUTES)
+	public function setVar($VarName, $VarValue, $TimeLimit = Cache::CACHE_FIVE_MINUTES)
 	{
 		return FALSE;
 	}
 	
 	/**
-	 * Deletes a variable from the cache.
-	 * Returns true if successful and false
-	 * if fails.
+	 * Dummy method: Returns false for all requests.
 	 * @param $VarName string
-	 * @return bool
+	 * @return false
 	 */
 	public function deleteVar($VarName)
 	{
@@ -54,10 +52,8 @@ class No_Cache implements CacheBase {
 	}
 	
 	/**
-	 * Clears the cache of the all the
-	 * variables in it. Returns true if
-	 * successful and false if it fails.
-	 * @return bool
+	 * Dummy method: Returns false for all requests.
+	 * @return false
 	 */
 	public function clear()
 	{
@@ -65,11 +61,9 @@ class No_Cache implements CacheBase {
 	}
 
 }
+
 /**
- * Simple class to deal with APC.
- * @author Iain Cambridge
- * @copyright All rights reserved 2009-2010 (c)
- * @license http://backie.org/copyright/bsd-license BSD License
+ * APC_Cache
  */
 class APC_Cache implements CacheBase {
 
@@ -124,10 +118,7 @@ class APC_Cache implements CacheBase {
 }
 
 /**
- * Simple class to deal with eAccelerator.
- * @author Iain Cambridge
- * @copyright All rights reserved 2009-2010 (c)
- * @license http://backie.org/copyright/bsd-license BSD License
+ * eAccelerator_Cache
  */
 class eAccelerator_Cache implements CacheBase {
 
@@ -183,10 +174,7 @@ class eAccelerator_Cache implements CacheBase {
 }
 
 /**
- * Simple class to deal with XCache.
- * @author Iain Cambridge
- * @copyright All rights reserved 2009-2010 (c)
- * @license http://backie.org/copyright/bsd-license BSD License
+ * XCache_Cache
  */
 class XCache_Cache implements CacheBase {
 
@@ -245,14 +233,11 @@ class XCache_Cache implements CacheBase {
 
 
 /**
- * Simple class to deal with File Cache.
- * @author Iain Cambridge
- * @copyright All rights reserved 2009-2010 (c)
- * @license http://backie.org/copyright/bsd-license BSD License
+ * File_Cache
  */
 class File_Cache implements CacheBase {
 
-    protected $cache_folder = CACHE_FOLDER;
+    protected $cache_folder = './cache/';
     
     /**
      * Sets the location of the file cache folder.
@@ -391,8 +376,7 @@ class File_Cache implements CacheBase {
 
 
 /*********************************************************************************
-DEFINE THE CORE AE CLASS USED IN THE APPLICATION
-UE_Cache must extend either UE_eAccelerator_Cache or UE_APC_Cache
+DEFINE THE CORE UE CLASS USED IN THE APPLICATION
 *********************************************************************************/
 class Cache
 {
