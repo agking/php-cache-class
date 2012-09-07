@@ -1,4 +1,4 @@
-cache-class
+php-cache-class
 ===========
 
 Example use case:
