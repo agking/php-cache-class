@@ -1,9 +1,6 @@
 <?php
 /**
- * Based on and adapted from original work by Iain Cambridge:
- * @author Iain Cambridge
- * @copyright All rights reserved 2009-2010 (c)
- * @license http://backie.org/copyright/bsd-license BSD License
+ * Parts of this code are based on and/or adapted from original work by Iain Cambridge (http://icambridge.me/)
  */
 
 interface CacheBase
