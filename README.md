@@ -9,6 +9,12 @@ Example use case:
 
 ```php
 
+// Set the type of cache to use.  Must be one of: 'apc', 'eaccelerator', 'xcache', 'file', 'none'
+define('CACHE_TYPE', 'file');
+
+// Set the path to the folder containing cache files (only used for the 'file' cache type
+define('CACHE_FOLDER', dirname(__FILE__).'/cache/');
+
 // Get an instance for the cache object
 $cache = Cache::getInstance();
 
