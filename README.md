@@ -1,6 +1,10 @@
 php-cache-class
 ===========
 
+A simple PHP class using the singleton design pattern to handle caching data.
+
+Currently supports APC, eaccelerator, xcache and file-based caching.
+
 Example use case:
 
 ```php
