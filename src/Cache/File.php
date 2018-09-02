@@ -30,7 +30,7 @@ class File implements CacheBase
         $data = file_get_contents($filename);
         fclose($h);
 
-        $data = unserialize($data);
+        $data = json_decode($data);
 
         if (!$data) {
             // If unserializing somehow didn't work out, we'll delete the file
@@ -73,7 +73,7 @@ class File implements CacheBase
         ftruncate($h, 0);
 
         // Serializing along with the TTL
-        $data = serialize(array(time() + $TimeLimit, $VarValue));
+        $data = json_encode(array(time() + $TimeLimit, $VarValue));
         if (fwrite($h, $data) === false) {
             throw new \RuntimeException('Could not write to cache');
         }
