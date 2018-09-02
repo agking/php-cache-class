@@ -5,7 +5,7 @@
   "license": "LGPL-3.0-or-later",
   "autoload": {
     "psr-0": {
-      "agking\\Cache\\": "src/"
+      "classmap": ["src"]
     }
   }
 }
