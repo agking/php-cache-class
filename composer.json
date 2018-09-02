@@ -1,9 +1,11 @@
 {
   "name": "agking/php-cache-class",
-  "version": "2.0",
+  "type": "library",
+  "description": "A set of simple PHP classes using the singleton design pattern to handle caching data.",
+  "license": "LGPL-3.0-or-later",
   "autoload": {
     "psr-0": {
-      "php-cache-class\\": "src/"
+      "Cache\\" : "src/"
     }
   }
 }
