@@ -20,19 +20,11 @@ class Cache
      */
     private static $instance;
 
-    /**
-     * The type of cache class
-     * @var CacheType
-     */
-    private static $cacheType;
 
     /**
      * A private constructor; prevents direct creation of object
-     * @param CacheType $cacheType
      */
-    private function __construct(CacheType $cacheType)
-    {
-        self::$cacheType = $cacheType;
+    private function __construct() {
     }
 
     /**
@@ -42,7 +34,7 @@ class Cache
     public static function getInstance()
     {
         if (!isset(self::$instance)) {
-            switch (self::$cacheType) {
+            switch (CACHE_TYPE) {
                 case CacheType::apc:
                     self::$cache = new APC();
                     break;
